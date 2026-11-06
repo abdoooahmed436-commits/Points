@@ -35,12 +35,6 @@ footer{text-align:center;color:#70788d;font-size:12px;padding:20px}
 <header><h1>🏆 لوحة النقاط والمسابقات</h1><p>اختر اسمك وشارك في التحديات</p></header>
 <div class="status" id="status">جاري الاتصال بقاعدة البيانات...</div>
 
-<section class="card" id="studentEntry">
-  <h2>👤 اختر اسمك</h2>
-  <select id="studentSelect"><option value="">جاري تحميل اللاعبين...</option></select>
-  <button class="primary" id="continueBtn">دخول المسابقات</button>
-  <p class="small">الدخول بالاسم فقط؛ لذلك يمكن لأي شخص اختيار اسم لاعب آخر.</p>
-</section>
 
 <section class="card hidden" id="studentArea">
   <div class="row"><h2 id="welcomeName">المسابقات</h2><button class="soft" id="changeStudentBtn">تغيير الاسم</button></div>
@@ -404,8 +398,7 @@ function renderAdminQuestions(){
     box.append(item);
   });
 }
-
-// مراجعة المقالات: البيانات مقروءة للأدمن فقط من قاعدة البيانات
+مراجعة المقالات: البيانات مقروءة للأدمن فقط من قاعدة البيانات
 let submissions={};
 function renderEssays(){
   const box=$("essayList");if(!box)return;box.replaceChildren();
@@ -433,3 +426,4 @@ async function grade(questionId,submissionId,correct){
 </script>
 </body>
 </html>
+let
