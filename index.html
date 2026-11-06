@@ -1,117 +1,327 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>لوحة النقاط والمسابقات</title>
+<meta name="theme-color" content="#101321">
+<title>لوحة النقاط</title>
+
 <style>
-:root{--bg:#101321;--card:#1a2033;--line:#303950;--purple:#8b5cf6;--muted:#aab0c0;--green:#167d57;--red:#a83255}
-*{box-sizing:border-box}body{margin:0;padding:16px;background:var(--bg);color:#fff;font-family:Arial,sans-serif}
-main{max-width:720px;margin:auto}header{text-align:center;padding:22px 8px}header h1{color:#c4b5fd;margin:0 0 8px}
-header p,.muted{color:var(--muted)}.status{text-align:center;color:#aab0c0;font-size:13px;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
-h2{font-size:20px;color:#c4b5fd;margin:0 0 16px}
-h3{margin:0 0 10px}input,textarea,select{width:100%;padding:12px;margin:7px 0 12px;background:#101626;color:white;border:1px solid #3b4660;border-radius:9px;font-size:16px}
-textarea{min-height:85px;resize:vertical}button{border:0;border-radius:9px;padding:11px 14px;font-weight:bold;cursor:pointer;color:white;background:#46516b}
-button:disabled{opacity:.5;cursor:not-allowed}.primary{background:#7c3aed;width:100%}.green{background:var(--green)}.red{background:var(--red)}.soft{background:#303950}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.hidden{display:none!important}
-.tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs button{flex:1;min-width:100px}.tab-active{background:#7c3aed}
-.player,.question,.submission,.option{background:#242d43;border:1px solid #35415b;border-radius:12px;padding:13px;margin:9px 0}
-.player{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.score{color:#fbbf24;font-size:20px;font-weight:bold}.controls{display:flex;gap:5px;flex-wrap:wrap}
-.controls button{padding:8px 10px}.top{border-color:#b48cff}
-.small{font-size:13px;color:var(--muted)}.msg{margin:10px 0;color:#fca5a5}.ok{color:#86efac}
-.question img{max-width:100%;max-height:260px;object-fit:contain;border-radius:10px;margin:10px 0}
-.timer{font-size:24px;font-weight:bold;color:#fbbf24;text-align:center;padding:10px}
-.option{display:flex;gap:8px;align-items:center;cursor:pointer}.option input{width:auto;margin:0}
-.badge{display:inline-block;background:#37305b;color:#ddd6fe;border-radius:20px;padding:5px 9px;font-size:12px;margin:2px}
-hr{border:0;border-top:1px solid var(--line);margin:18px 0}
-footer{text-align:center;color:#70788d;font-size:12px;padding:20px}
-@media(max-width:450px){body{padding:10px}.card{padding:14px}.player{align-items:flex-start}}
+:root {
+  --bg: #101321;
+  --card: #1a2033;
+  --line: #303950;
+  --purple: #8b5cf6;
+  --muted: #aab0c0;
+  --green: #167d57;
+  --red: #a83255;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: var(--bg);
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  max-width: 720px;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  padding: 22px 8px;
+}
+
+header h1 {
+  color: #c4b5fd;
+  margin: 0 0 8px;
+}
+
+header p,
+.muted {
+  color: var(--muted);
+}
+
+.status {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  margin: 14px 0;
+}
+
+h2 {
+  font-size: 20px;
+  color: #c4b5fd;
+  margin: 0 0 16px;
+}
+
+h3 {
+  margin: 0 0 10px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 12px;
+  background: #101626;
+  color: white;
+  border: 1px solid #3b4660;
+  border-radius: 9px;
+  font-size: 16px;
+}
+
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 14px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  background: #46516b;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: #7c3aed;
+  width: 100%;
+}
+
+.green {
+  background: var(--green);
+}
+
+.red {
+  background: var(--red);
+}
+
+.soft {
+  background: #303950;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.player {
+  background: #242d43;
+  border: 1px solid #35415b;
+  border-radius: 12px;
+  padding: 13px;
+  margin: 9px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.score {
+  color: #fbbf24;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.controls {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  padding: 8px 10px;
+}
+
+.top {
+  border-color: #b48cff;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.msg {
+  margin: 10px 0;
+  color: #fca5a5;
+  font-size: 13px;
+}
+
+.ok {
+  color: #86efac;
+}
+
+footer {
+  text-align: center;
+  color: #70788d;
+  font-size: 12px;
+  padding: 20px;
+}
+
+@media(max-width:450px) {
+  body {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .player {
+    align-items: flex-start;
+  }
+
+  .controls {
+    width: 100%;
+  }
+
+  .controls button {
+    flex: 1;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <main>
-<header><h1>🏆 لوحة النقاط والمسابقات</h1><p>اختر اسمك وشارك في التحديات</p></header>
-<div class="status" id="status">جاري الاتصال بقاعدة البيانات...</div>
 
+<header>
+  <h1>🏆 لوحة النقاط</h1>
+  <p>تابع ترتيب اللاعبين واجمع أكبر عدد من النقاط</p>
+</header>
 
-<section class="card hidden" id="studentArea">
-  <div class="row"><h2 id="welcomeName">المسابقات</h2><button class="soft" id="changeStudentBtn">تغيير الاسم</button></div>
-  <div id="studentQuestions"></div>
-  <div id="activeQuestion" class="hidden"></div>
-</section>
+<div class="status" id="status">
+  جاري الاتصال بقاعدة البيانات...
+</div>
 
-<section class="card" id="leaderboardCard">
+<!-- ترتيب اللاعبين -->
+<section class="card">
   <h2>🥇 ترتيب اللاعبين</h2>
-  <div id="playersList"><p class="muted">جاري التحميل...</p></div>
+
+  <div id="playersList">
+    <p class="muted">جاري التحميل...</p>
+  </div>
 </section>
 
+<!-- تسجيل دخول الأدمن -->
 <section class="card" id="adminLogin">
   <h2>🔐 دخول الأدمن</h2>
-  <input id="adminPassword" type="password" placeholder="كلمة مرور الأدمن">
-  <button class="primary" id="adminLoginBtn">تسجيل الدخول</button>
+
+  <input
+    id="adminPassword"
+    type="password"
+    placeholder="كلمة مرور الأدمن"
+    autocomplete="current-password"
+  >
+
+  <button class="primary" id="adminLoginBtn">
+    تسجيل الدخول
+  </button>
+
   <p id="loginMessage" class="msg"></p>
 </section>
 
+<!-- لوحة الأدمن -->
 <section class="card hidden" id="adminPanel">
-  <div class="row"><h2>⚙️ لوحة الأدمن</h2><button class="soft" id="adminLogoutBtn">خروج</button></div>
-  <div class="tabs">
-    <button class="tab-active" data-admin-tab="players">اللاعبون</button>
-    <button data-admin-tab="questions">إضافة سؤال</button>
-    <button data-admin-tab="answers">الإجابات المقالية</button>
+
+  <div class="row">
+    <h2>⚙️ لوحة الأدمن</h2>
+
+    <button class="soft" id="adminLogoutBtn">
+      تسجيل الخروج
+    </button>
   </div>
 
-  <div id="adminPlayers" class="admin-tab">
-    <h3>إضافة لاعب</h3>
-    <input id="newPlayerName" maxlength="40" placeholder="اسم اللاعب">
-    <input id="newPlayerPoints" type="number" step="1" value="0" placeholder="النقاط">
-    <button class="primary" id="addPlayerBtn">إضافة اللاعب</button>
-    <p class="small">يمكنك تعديل النقاط أو حذف اللاعب من قائمة الترتيب.</p>
-  </div>
+  <hr>
 
-  <div id="adminQuestions" class="admin-tab hidden">
-    <h3>إنشاء سؤال جديد</h3>
-    <label>نص السؤال</label>
-    <textarea id="qText" placeholder="اكتب السؤال هنا"></textarea>
-    <label>صورة السؤال (اختياري)</label>
-    <input id="qImage" type="file" accept="image/*">
-    <label>شرح الإجابة (يظهر بعد الإجابة الاختيارية الصحيحة أو بعد التصحيح)</label>
-    <textarea id="qExplanation" placeholder="اكتب الشرح"></textarea>
-    <label>نوع السؤال</label>
-    <select id="qType"><option value="mcq">اختياري - تصحيح تلقائي</option><option value="essay">مقالي - تصحيح يدوي</option></select>
-    <div id="mcqFields">
-      <label>الاختيارات (اكتب اختيارًا في كل سطر، من 2 إلى 6)</label>
-      <textarea id="qOptions" placeholder="الاختيار الأول&#10;الاختيار الثاني&#10;الاختيار الثالث"></textarea>
-      <label>رقم الإجابة الصحيحة (يبدأ من 1)</label>
-      <input id="qCorrect" type="number" min="1" value="1">
-    </div>
-    <div class="row">
-      <div><label>الوقت بالثواني</label><input id="qTime" type="number" min="10" max="3600" value="30"></div>
-      <div><label>عدد المحاولات</label><input id="qAttempts" type="number" min="1" max="20" value="1"></div>
-      <div><label>النقاط</label><input id="qPoints" type="number" min="0" max="100000" value="10"></div>
-    </div>
-    <button class="primary" id="createQuestionBtn">نشر السؤال</button>
-    <p id="questionMessage" class="msg"></p>
-    <hr><h3>الأسئلة المنشورة</h3><div id="adminQuestionList"></div>
-  </div>
+  <h3>إضافة لاعب جديد</h3>
 
-  <div id="adminAnswers" class="admin-tab hidden">
-    <h3>الإجابات المقالية المعلقة</h3>
-    <div id="essayList"><p class="muted">جاري التحميل...</p></div>
-  </div>
+  <input
+    id="newPlayerName"
+    maxlength="40"
+    placeholder="اسم اللاعب"
+  >
+
+  <input
+    id="newPlayerPoints"
+    type="number"
+    step="1"
+    value="0"
+    placeholder="النقاط الابتدائية"
+  >
+
+  <button class="primary" id="addPlayerBtn">
+    إضافة اللاعب
+  </button>
+
+  <p class="small">
+    يمكنك زيادة أو خصم النقاط وحذف اللاعبين من قائمة الترتيب.
+  </p>
+
+  <p id="adminMessage" class="msg"></p>
+
 </section>
-<footer>نظام النقاط والمسابقات © 2026</footer>
+
+<footer>
+  نظام النقاط © 2026
+</footer>
+
 </main>
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getDatabase,ref,push,set,update,remove,onValue} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import {getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getStorage,ref as storageRef,uploadBytes,getDownloadURL} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-import {getFunctions,httpsCallable} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
 
-// 1) ضع بيانات مشروع Firebase هنا
+// Firebase imports
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  push,
+  set,
+  update,
+  remove,
+  onValue
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+// إعدادات Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCPTUhg1OT2QzosTJb9_YIJjRl3dDQ0UCg",
   authDomain: "points-50629.firebaseapp.com",
@@ -122,308 +332,456 @@ const firebaseConfig = {
   appId: "1:147880779035:web:fe53ee48b0fb40a01f87be",
   measurementId: "G-TC3LNVD21E"
 };
-// 2) ضع UID الأدمن الحقيقي هنا
+
+
+// بيانات الأدمن
 const ADMIN_UID = "C1vYjnJ0DMQ7ujmsTtUD1aaV9HR2";
-// البريد الداخلي لا يظهر للزوار. أنشئ هذا البريد في Firebase Authentication.
 const ADMIN_EMAIL = "admin@points-system.com";
 
-const app=initializeApp(firebaseConfig);
-const db=getDatabase(app),auth=getAuth(app),storage=getStorage(app);
-const functions=getFunctions(app,"us-central1");
-const call=(name,data)=>httpsCallable(functions,name)(data);
-const $=id=>document.getElementById(id);
-let players={},questions={},selectedPlayerId=null,selectedPlayerName="",isAdmin=false;
-let currentAttempt=null,timerInterval=null;
 
-function msg(id,text,ok=false){$(id).textContent=text;$(id).className=ok?"msg ok":"msg";}
-function status(t){$("status").textContent=t;}
-function makeButton(text,cls,fn){const b=document.createElement("button");b.textContent=text;b.className=cls;b.addEventListener("click",fn);return b;}
-function node(tag,text,cls){const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;}
+// تشغيل Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
 
-// مراقبة اللاعبين
-onValue(ref(db,"players"),snap=>{
-  players=snap.val()||{};
+const $ = id => document.getElementById(id);
+
+let players = {};
+let isAdmin = false;
+
+
+// رسائل الموقع
+function showMessage(id, text, success = false) {
+  $(id).textContent = text;
+  $(id).className = success ? "msg ok" : "msg";
+}
+
+
+// حالة الاتصال
+function setStatus(text, error = false) {
+  $("status").textContent = text;
+  $("status").style.color = error ? "#fca5a5" : "#86efac";
+}
+
+
+// إنشاء زر
+function makeButton(text, className, action) {
+  const button = document.createElement("button");
+
+  button.type = "button";
+  button.textContent = text;
+  button.className = className;
+
+  button.addEventListener("click", action);
+
+  return button;
+}
+
+
+// عرض اللاعبين
+function renderPlayers() {
+
+  const box = $("playersList");
+  box.replaceChildren();
+
+  const list = Object.entries(players).sort((a, b) => {
+
+    const pointsDifference =
+      Number(b[1].points || 0) -
+      Number(a[1].points || 0);
+
+    return pointsDifference ||
+      String(a[1].name || "").localeCompare(
+        String(b[1].name || ""),
+        "ar"
+      );
+
+  });
+
+
+  if (list.length === 0) {
+
+    const empty = document.createElement("p");
+
+    empty.className = "muted";
+    empty.textContent = "لا يوجد لاعبون حتى الآن.";
+
+    box.append(empty);
+
+    return;
+  }
+
+
+  list.forEach(([id, player], index) => {
+
+    const item = document.createElement("div");
+
+    item.className =
+      "player" + (index === 0 ? " top" : "");
+
+
+    const info = document.createElement("div");
+
+    const name = document.createElement("strong");
+
+    name.textContent =
+      `${index + 1}. ${player.name || "لاعب بدون اسم"}`;
+
+
+    const rank = document.createElement("div");
+
+    rank.className = "small";
+
+    rank.textContent =
+      index === 0
+        ? "المتصدر 🏆"
+        : `المركز ${index + 1}`;
+
+
+    info.append(name, rank);
+
+
+    const score = document.createElement("div");
+
+    score.className = "score";
+
+    score.textContent =
+      `${Number(player.points || 0)} نقطة`;
+
+
+    item.append(info, score);
+
+
+    // أزرار التحكم تظهر للأدمن فقط
+    if (isAdmin) {
+
+      const controls = document.createElement("div");
+
+      controls.className = "controls";
+
+      controls.append(
+
+        makeButton("+1", "green", () =>
+          changePoints(id, 1)
+        ),
+
+        makeButton("+5", "green", () =>
+          changePoints(id, 5)
+        ),
+
+        makeButton("+10", "green", () =>
+          changePoints(id, 10)
+        ),
+
+        makeButton("-1", "red", () =>
+          changePoints(id, -1)
+        ),
+
+        makeButton("-5", "red", () =>
+          changePoints(id, -5)
+        ),
+
+        makeButton("حذف", "soft", () =>
+          deletePlayer(id)
+        )
+
+      );
+
+      item.append(controls);
+
+    }
+
+
+    box.append(item);
+
+  });
+
+}
+
+
+// متابعة بيانات اللاعبين
+onValue(
+  ref(db, "players"),
+
+  snapshot => {
+
+    players = snapshot.val() || {};
+
+    renderPlayers();
+
+    setStatus("🟢 متصل - الترتيب يتحدث تلقائيًا");
+
+  },
+
+  error => {
+
+    setStatus(
+      "تعذر الاتصال: " + error.message,
+      true
+    );
+
+  }
+);
+
+
+// تسجيل دخول الأدمن
+$("adminLoginBtn").addEventListener("click", async () => {
+
+  const password = $("adminPassword").value;
+
+  if (!password) {
+
+    showMessage(
+      "loginMessage",
+      "اكتب كلمة المرور أولاً."
+    );
+
+    return;
+  }
+
+
+  $("adminLoginBtn").disabled = true;
+
+  showMessage(
+    "loginMessage",
+    "جاري تسجيل الدخول..."
+  );
+
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      ADMIN_EMAIL,
+      password
+    );
+
+    showMessage(
+      "loginMessage",
+      "تم تسجيل الدخول بنجاح.",
+      true
+    );
+
+  } catch (error) {
+
+    showMessage(
+      "loginMessage",
+      "فشل تسجيل الدخول. راجع كلمة المرور."
+    );
+
+  } finally {
+
+    $("adminPassword").value = "";
+    $("adminLoginBtn").disabled = false;
+
+  }
+
+});
+
+
+// تسجيل الدخول بزر Enter
+$("adminPassword").addEventListener("keydown", event => {
+
+  if (event.key === "Enter") {
+    $("adminLoginBtn").click();
+  }
+
+});
+
+
+// متابعة حالة الأدمن
+onAuthStateChanged(auth, async user => {
+
+  isAdmin =
+    !!user &&
+    user.uid === ADMIN_UID;
+
+
+  $("adminLogin").classList.toggle(
+    "hidden",
+    isAdmin
+  );
+
+  $("adminPanel").classList.toggle(
+    "hidden",
+    !isAdmin
+  );
+
+
   renderPlayers();
-  renderStudentSelect();
-  renderAdminQuestions();
-  status("🟢 متصل - البيانات تتحدث مباشرة");
-},err=>status("🔴 "+err.message));
 
-// مراقبة الأسئلة العامة
-onValue(ref(db,"questions"),snap=>{
-  questions=snap.val()||{};
-  renderStudentQuestions();
-  renderAdminQuestions();
-},err=>status("تعذر تحميل الأسئلة: "+err.message));
 
-function renderStudentSelect(){
-  const s=$("studentSelect"),old=s.value;
-  s.replaceChildren();
-  s.append(new Option("اختر اسمك",""));
-  Object.entries(players).sort((a,b)=>a[1].name.localeCompare(b[1].name,"ar"))
-    .forEach(([id,p])=>s.append(new Option(p.name,id)));
-  if(players[old])s.value=old;
-}
-
-function renderPlayers(){
-  const box=$("playersList");box.replaceChildren();
-  const arr=Object.entries(players).sort((a,b)=>Number(b[1].points)-Number(a[1].points));
-  if(!arr.length){box.append(node("p","لا يوجد لاعبون حتى الآن","muted"));return;}
-  arr.forEach(([id,p],i)=>{
-    const item=node("div","","player"+(i===0?" top":""));
-    const info=document.createElement("div");
-    info.append(node("strong",`${i+1}. ${p.name}`),node("div",i===0?"المتصدر 🏆":`المركز ${i+1}`,"small"));
-    item.append(info,node("div",`${p.points||0} نقطة`,"score"));
-    if(isAdmin){
-      const c=node("div","","controls");
-      c.append(
-        makeButton("+1","green",()=>changePoints(id,1)),
-        makeButton("+5","green",()=>changePoints(id,5)),
-        makeButton("-1","red",()=>changePoints(id,-1)),
-        makeButton("حذف","soft",()=>deletePlayer(id))
-      );item.append(c);
-    }
-    box.append(item);
-  });
-}
-
-$("continueBtn").onclick=()=>{
-  const id=$("studentSelect").value;
-  if(!id||!players[id])return alert("اختر اسمك أولاً");
-  selectedPlayerId=id;selectedPlayerName=players[id].name;
-  $("studentEntry").classList.add("hidden");
-  $("studentArea").classList.remove("hidden");
-  $("welcomeName").textContent="أهلاً "+selectedPlayerName;
-  renderStudentQuestions();
-};
-
-$("changeStudentBtn").onclick=()=>{
-  stopTimer();selectedPlayerId=null;selectedPlayerName="";
-  $("studentArea").classList.add("hidden");$("studentEntry").classList.remove("hidden");
-};
-
-function renderStudentQuestions(){
-  const box=$("studentQuestions");if(!box)return;box.replaceChildren();
-  if(!selectedPlayerId){box.append(node("p","اختر اسمك لعرض الأسئلة.","muted"));return;}
-  const arr=Object.entries(questions).filter(([id,q])=>q.active!==false);
-  if(!arr.length){box.append(node("p","لا توجد أسئلة متاحة حاليًا.","muted"));return;}
-  arr.forEach(([id,q])=>{
-    const card=node("div","","question");
-    card.append(node("h3",q.text),node("span",q.type==="mcq"?"اختياري":"مقالي","badge"),
-      node("span",`${q.points} نقطة`,"badge"),
-      node("span",`${q.timeLimit} ثانية`,"badge"),
-      node("span",`${q.maxAttempts} محاولة`,"badge"));
-    const b=makeButton("فتح السؤال","primary",()=>openQuestion(id,q));
-    card.append(b);box.append(card);
-  });
-}
-
-async function openQuestion(id,q){
-  if(!selectedPlayerId)return;
-  const area=$("activeQuestion");area.classList.remove("hidden");area.replaceChildren();
-  area.append(node("h2",q.text));
-  if(q.imageUrl){const im=document.createElement("img");im.src=q.imageUrl;im.alt="صورة السؤال";im.style.maxWidth="100%";area.append(im);}
-  const loading=node("p","جارٍ بدء المحاولة...","muted");area.append(loading);
-  try{
-    const result=await call("startAttempt",{questionId:id,playerId:selectedPlayerId});
-    currentAttempt={...result.data,questionId:id,playerId:selectedPlayerId,question:q};
-    area.replaceChildren();
-    area.append(node("h2",q.text));
-    if(q.imageUrl){const im=document.createElement("img");im.src=q.imageUrl;im.alt="صورة السؤال";area.append(im);}
-    const timer=node("div","","timer");timer.id="questionTimer";area.append(timer);
-    const remaining=result.data.expiresAt-Date.now();
-    if(remaining<=0){timer.textContent="انتهى الوقت";return;}
-    if(q.type==="mcq"){
-      const choices=node("div","");
-      q.options.forEach((opt,i)=>{
-        const label=node("label","","option");
-        const radio=document.createElement("input");radio.type="radio";radio.name="answer";radio.value=String(i);
-        label.append(radio,node("span",opt));choices.append(label);
-      });
-      area.append(choices,makeButton("إرسال الإجابة","primary",submitMcq));
-    }else{
-      const answer=document.createElement("textarea");answer.id="essayAnswer";answer.placeholder="اكتب إجابتك هنا";
-      area.append(answer,makeButton("إرسال الإجابة المقالية","primary",submitEssay));
-    }
-    startTimer(result.data.expiresAt);
-  }catch(e){area.replaceChildren(node("p",friendlyError(e),"msg"));}
-}
-
-function friendlyError(e){
-  const code=e.code||"";
-  if(code.includes("resource-exhausted"))return "انتهت المحاولات المسموحة.";
-  if(code.includes("not-found"))return "السؤال أو اللاعب غير موجود.";
-  if(code.includes("failed-precondition"))return e.message||"لا يمكن بدء المحاولة.";
-  return e.message||"حدث خطأ.";
-}
-
-function startTimer(expiresAt){
-  stopTimer();
-  const tick=()=>{
-    const left=Math.max(0,Math.ceil((expiresAt-Date.now())/1000));
-    const t=$("questionTimer");if(t)t.textContent=`⏳ الوقت المتبقي: ${left} ثانية`;
-    if(left<=0){stopTimer();const a=$("activeQuestion");if(a)a.append(node("p","انتهى الوقت. لن تُقبل إجابة بعد الآن.","msg"));}
-  };
-  tick();timerInterval=setInterval(tick,250);
-}
-
-function stopTimer(){if(timerInterval)clearInterval(timerInterval);timerInterval=null;}
-
-async function submitMcq(){
-  if(!currentAttempt)return;
-  const chosen=document.querySelector('input[name="answer"]:checked');
-  if(!chosen)return alert("اختر إجابة");
-  try{
-    const r=await call("submitMcq",{questionId:currentAttempt.questionId,playerId:currentAttempt.playerId,attemptId:currentAttempt.attemptId,answerIndex:Number(chosen.value)});
-    stopTimer();currentAttempt=null;
-    const a=$("activeQuestion");a.replaceChildren(node("h3",r.data.correct?"إجابة صحيحة! 🎉":"إجابة غير صحيحة"));
-    a.append(node("p",r.data.message||"تم تسجيل إجابتك."));
-    if(r.data.explanation)a.append(node("p",r.data.explanation));
-    a.append(makeButton("العودة للأسئلة","primary",()=>{a.classList.add("hidden");renderStudentQuestions();}));
-  }catch(e){alert(friendlyError(e));}
-}
-
-async function submitEssay(){
-  if(!currentAttempt)return;
-  const answer=$("essayAnswer").value.trim();
-  if(!answer)return alert("اكتب إجابتك أولاً");
-  try{
-    const r=await call("submitEssay",{questionId:currentAttempt.questionId,playerId:currentAttempt.playerId,attemptId:currentAttempt.attemptId,answer});
-    stopTimer();currentAttempt=null;
-        const a=$("activeQuestion");a.replaceChildren(node("h3","تم إرسال إجابتك للمراجعة ✅"),node("p","سيقوم الأدمن بمراجعة إجابتك وتحديد النقاط."));
-    a.append(makeButton("العودة للأسئلة","primary",()=>{a.classList.add("hidden");renderStudentQuestions();}));
-  }catch(e){alert(friendlyError(e));}
-}
-
-// تسجيل الأدمن بالبريد الداخلي وكلمة المرور فقط
-$("adminLoginBtn").onclick=async()=>{
-  $("adminLoginBtn").disabled=true;
-  try{await signInWithEmailAndPassword(auth,ADMIN_EMAIL,$("adminPassword").value);}
-  catch(e){msg("loginMessage","كلمة المرور غير صحيحة.");}
-  finally{$("adminPassword").value="";$("adminLoginBtn").disabled=false;}
-};
-let submissionsUnsubscribe=null;
-onAuthStateChanged(auth,user=>{
-  isAdmin=!!user&&user.uid===ADMIN_UID;
-  $("adminLogin").classList.toggle("hidden",isAdmin);
-  $("adminPanel").classList.toggle("hidden",!isAdmin);
-  renderPlayers();renderAdminQuestions();
-  if(isAdmin && !submissionsUnsubscribe){
-    submissionsUnsubscribe=onValue(ref(db,"submissions"),snap=>{
-      submissions=snap.val()||{};
-      renderEssays();
-    },err=>{ $("essayList").textContent="تعذر تحميل الإجابات: "+err.message; });
-  } else if(!isAdmin && submissionsUnsubscribe){
-    submissionsUnsubscribe();
-    submissionsUnsubscribe=null;
-    submissions={};
-    renderEssays();
+  // منع أي حساب غير حساب الأدمن المحدد
+  if (user && !isAdmin) {
+    await signOut(auth);
   }
-  if(user&&!isAdmin)signOut(auth);
+
 });
-$("adminLogoutBtn").onclick=()=>signOut(auth);
 
-// تبويبات الأدمن
-document.querySelectorAll("[data-admin-tab]").forEach(btn=>btn.onclick=()=>{
-  document.querySelectorAll("[data-admin-tab]").forEach(b=>b.classList.remove("tab-active"));
-  btn.classList.add("tab-active");
-  document.querySelectorAll(".admin-tab").forEach(x=>x.classList.add("hidden"));
-  $("admin"+btn.dataset.adminTab[0].toUpperCase()+btn.dataset.adminTab.slice(1)).classList.remove("hidden");
-});
-$("qType").onchange=()=>{$("mcqFields").classList.toggle("hidden",$("qType").value!=="mcq");};
 
-// إدارة اللاعبين
-$("addPlayerBtn").onclick=async()=>{
-  if(!isAdmin)return;
-  const name=$("newPlayerName").value.trim(),points=Number($("newPlayerPoints").value);
-  if(!name||!Number.isSafeInteger(points))return alert("أدخل اسمًا ونقاطًا صحيحة.");
-  if(Object.values(players).some(p=>p.name.toLowerCase()===name.toLowerCase()))return alert("الاسم موجود.");
-  try{await set(push(ref(db,"players")),{name,points});$("newPlayerName").value="";$("newPlayerPoints").value="0";}
-  catch(e){alert(e.message);}
-};
-async function changePoints(id,amount){
-  if(!isAdmin)return;const next=Number(players[id].points||0)+amount;
-  if(!Number.isSafeInteger(next))return alert("قيمة غير صحيحة");
-  try{await update(ref(db,"players/"+id),{points:next});}catch(e){alert(e.message);}
-}
-async function deletePlayer(id){
-  if(!isAdmin||!confirm("حذف اللاعب؟"))return;
-  try{await remove(ref(db,"players/"+id));}catch(e){alert(e.message);}
-}
+// تسجيل الخروج
+$("adminLogoutBtn").addEventListener("click", async () => {
 
-// نشر السؤال عبر Cloud Function حتى تبقى الإجابة الصحيحة سرية
-$("createQuestionBtn").onclick=async()=>{
-  if(!isAdmin)return;
-  const text=$("qText").value.trim(),type=$("qType").value;
-  const timeLimit=Number($("qTime").value),maxAttempts=Number($("qAttempts").value),points=Number($("qPoints").value);
-  if(!text||!Number.isInteger(timeLimit)||timeLimit<10||timeLimit>3600||
-     !Number.isInteger(maxAttempts)||maxAttempts<1||maxAttempts>20||
-     !Number.isSafeInteger(points)||points<0)return msg("questionMessage","راجع نص السؤال والوقت والمحاولات والنقاط.");
-  let options=[],correctIndex=null;
-  if(type==="mcq"){
-    options=$("qOptions").value.split("\n").map(x=>x.trim()).filter(Boolean);
-    correctIndex=Number($("qCorrect").value)-1;
-    if(options.length<2||options.length>6||!Number.isInteger(correctIndex)||correctIndex<0||correctIndex>=options.length)
-      return msg("questionMessage","أدخل من 2 إلى 6 اختيارات وحدد رقم الإجابة الصحيحة.");
+  try {
+    await signOut(auth);
+  } catch (error) {
+    alert("تعذر تسجيل الخروج: " + error.message);
   }
-  $("createQuestionBtn").disabled=true;
-  try{
-    let imageUrl="";
-    const file=$("qImage").files[0];
-    if(file){
-      if(!file.type.startsWith("image/")||file.size>5*1024*1024)throw new Error("الصورة يجب أن تكون صورة وحجمها أقل من 5 ميجابايت.");
-      const path="questions/"+crypto.randomUUID()+"-"+file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-      const uploaded=await uploadBytes(storageRef(storage,path),file);
-      imageUrl=await getDownloadURL(uploaded.ref);
-    }
-    await call("createQuestion",{
-      text,type,options,correctIndex,
-      explanation:$("qExplanation").value.trim(),
-      timeLimit,maxAttempts,points,imageUrl
+
+});
+
+
+// إضافة لاعب
+$("addPlayerBtn").addEventListener("click", async () => {
+
+  if (!isAdmin) return;
+
+
+  const name = $("newPlayerName").value.trim();
+
+  const pointsText = $("newPlayerPoints").value.trim();
+
+  const points = Number(pointsText);
+
+
+  if (
+    !name ||
+    pointsText === "" ||
+    !Number.isSafeInteger(points)
+  ) {
+
+    showMessage(
+      "adminMessage",
+      "اكتب اسم اللاعب وعدد نقاط صحيح."
+    );
+
+    return;
+  }
+
+
+  // منع تكرار الأسماء
+  const nameExists = Object.values(players).some(player =>
+    String(player.name || "").trim().toLowerCase() ===
+    name.toLowerCase()
+  );
+
+
+  if (nameExists) {
+
+    showMessage(
+      "adminMessage",
+      "هذا الاسم موجود بالفعل."
+    );
+
+    return;
+  }
+
+
+  $("addPlayerBtn").disabled = true;
+
+
+  try {
+
+    const newPlayerRef = push(ref(db, "players"));
+
+    await set(newPlayerRef, {
+      name: name,
+      points: points
     });
-    ["qText","qOptions","qExplanation"].forEach(id=>$(id).value="");
-    $("qImage").value="";msg("questionMessage","تم نشر السؤال بنجاح.",true);
-  }catch(e){msg("questionMessage",friendlyError(e));}
-  finally{$("createQuestionBtn").disabled=false;}
-};
-function renderAdminQuestions(){
-  const box=$("adminQuestionList");if(!box)return;box.replaceChildren();
-  Object.entries(questions).forEach(([id,q])=>{
-    const item=node("div","","question");
-    item.append(node("strong",q.text),node("p",`${q.type==="mcq"?"اختياري":"مقالي"} • ${q.points} نقطة • ${q.timeLimit} ثانية • ${q.maxAttempts} محاولة`,"small"));
-    item.append(makeButton("حذف السؤال","red",async()=>{
-      if(!isAdmin||!confirm("حذف السؤال؟"))return;
-      try{await call("deleteQuestion",{questionId:id});}catch(e){alert(e.message);}
-    }));
-    box.append(item);
-  });
+
+
+    $("newPlayerName").value = "";
+    $("newPlayerPoints").value = "0";
+
+
+    showMessage(
+      "adminMessage",
+      "تمت إضافة اللاعب بنجاح.",
+      true
+    );
+
+  } catch (error) {
+
+    showMessage(
+      "adminMessage",
+      "تعذر إضافة اللاعب: " + error.message
+    );
+
+  } finally {
+
+    $("addPlayerBtn").disabled = false;
+
+  }
+
+});
+
+
+// تعديل النقاط
+async function changePoints(id, amount) {
+
+  if (!isAdmin || !players[id]) return;
+
+
+  const currentPoints =
+    Number(players[id].points || 0);
+
+  const newPoints = currentPoints + amount;
+
+
+  if (!Number.isSafeInteger(newPoints)) {
+
+    alert("قيمة النقاط غير صحيحة.");
+
+    return;
+  }
+
+
+  try {
+
+    await update(
+      ref(db, "players/" + id),
+      {
+        points: newPoints
+      }
+    );
+
+  } catch (error) {
+
+    alert("تعذر تعديل النقاط: " + error.message);
+
+  }
+
 }
-مراجعة المقالات: البيانات مقروءة للأدمن فقط من قاعدة البيانات
-let submissions={};
-function renderEssays(){
-  const box=$("essayList");if(!box)return;box.replaceChildren();
-  if(!isAdmin){box.append(node("p","سجّل دخول الأدمن لعرض الإجابات.","muted"));return;}
-  let count=0;
-  Object.entries(submissions).forEach(([qid,items])=>{
-    Object.entries(items||{}).forEach(([sid,s])=>{
-      if(s.status!=="pending")return;count++;
-      const item=node("div","","submission");
-      item.append(node("strong",s.playerName||"لاعب"),node("p",s.questionText||"سؤال"),node("p",s.answer||""));
-      item.append(node("p",`السؤال: ${s.questionText||""}`,"small"));
-      item.append(makeButton("قبول ومنح النقاط","green",()=>grade(qid,sid,true)),
-        makeButton("رفض الإجابة","red",()=>grade(qid,sid,false)));
-      box.append(item);
-    });
-  });
-  if(!count)box.append(node("p","لا توجد إجابات معلقة.","muted"));
+
+
+// حذف لاعب
+async function deletePlayer(id) {
+
+  if (!isAdmin || !players[id]) return;
+
+
+  const confirmed = confirm(
+    `هل تريد حذف اللاعب ${players[id].name}؟`
+  );
+
+  if (!confirmed) return;
+
+
+  try {
+
+    await remove(
+      ref(db, "players/" + id)
+    );
+
+  } catch (error) {
+
+    alert("تعذر حذف اللاعب: " + error.message);
+
+  }
+
 }
-async function grade(questionId,submissionId,correct){
-  if(!isAdmin)return;
-  const note=correct?prompt("ملاحظة للأدمن (اختياري):",""):"";
-  try{await call("gradeEssay",{questionId,submissionId,correct,feedback:note||""});}
-  catch(e){alert(e.message);}
-}
+
 </script>
+
 </body>
 </html>
-let
